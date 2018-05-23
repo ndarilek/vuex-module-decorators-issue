@@ -12,6 +12,8 @@
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "nuxt-edge": "^2.0.0-25448873.aaf44cf",
+    "remotestorage-widget": "^1.3.0",
+    "remotestoragejs": "^1.0.3",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {}

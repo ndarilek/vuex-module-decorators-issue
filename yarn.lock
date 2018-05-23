@@ -4879,6 +4879,18 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
 
+remotestorage-widget@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/remotestorage-widget/-/remotestorage-widget-1.3.0.tgz#6416d0da35fc30bf585331a179079656ed6b1517"
+
+remotestoragejs@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/remotestoragejs/-/remotestoragejs-1.0.3.tgz#8256b3f58c7369db5669814b3a10b6c3bb779830"
+  dependencies:
+    tv4 "^1.3.0"
+    webfinger.js "^2.6.6"
+    xhr2 "^0.1.4"
+
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -5542,6 +5554,10 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
+tv4@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/tv4/-/tv4-1.3.0.tgz#d020c846fadd50c855abb25ebaecc68fc10f7963"
+
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
@@ -5843,6 +5859,12 @@ webassemblyjs@1.4.3:
     "@webassemblyjs/wast-parser" "1.4.3"
     long "^3.2.0"
 
+webfinger.js@^2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/webfinger.js/-/webfinger.js-2.6.6.tgz#52ebdc85da8c8fb6beb690e8e32594c99d2ff4ae"
+  dependencies:
+    xhr2 "^0.1.4"
+
 webpack-bundle-analyzer@^2.11.3:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.13.0.tgz#8d7db44c3d4844bc911890998e1110514cf12264"
@@ -5991,6 +6013,10 @@ ws@^4.0.0:
   dependencies:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
+
+xhr2@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/xhr2/-/xhr2-0.1.4.tgz#7f87658847716db5026323812f818cadab387a5f"
 
 xhr@^2.0.1:
   version "2.4.1"

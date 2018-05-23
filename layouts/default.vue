@@ -43,9 +43,15 @@
 </template>
 
 <script>
+import Widget from 'remotestorage-widget';
 import {mapActions, mapGetters, mapMutations} from "vuex"
 
+import {remoteStorage} from "~/plugins/persistedstate"
+
 export default {
+  data: () => ({
+    remoteStorageWidget: null
+  }),
   computed: mapGetters({
     currentEpisode: "player/currentEpisode",
     currentFeed: "player/currentFeed",
@@ -69,6 +75,10 @@ export default {
       reader.onload = (evt) => this.importOpml(evt.target.result)
       reader.onerror = (evt) => console.log(evt)
     }
+  },
+  mounted() {
+    this.remoteStorageWidget = new Widget(remoteStorage)
+    this.remoteStorageWidget.attach()
   },
   updated() {
     const player = this.$refs.player
