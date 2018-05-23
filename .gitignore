@@ -2,3 +2,5 @@ node_modules
 .nuxt
 .serverless
 .env
+dist/
+static/sw.js
