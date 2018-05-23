@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/dotenv": "^1.1.1",
     "@nuxtjs/pwa": "^2.0.8",
     "bootstrap": "^4.1.1",
     "bootstrap-vue": "^2.0.0-rc.11",

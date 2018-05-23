@@ -7,6 +7,7 @@ module.exports = {
   },
   modules: [
     "@nuxtjs/axios",
+    "@nuxtjs/dotenv",
     "@nuxtjs/pwa",
     "bootstrap-vue/nuxt"
   ],
