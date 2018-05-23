@@ -4,7 +4,7 @@
       <b-col>
         <b-navbar toggleable="md" fixed="top">
           <b-navbar-toggle target="navitems"/>
-          <b-navbar-brand>Podcatcher</b-navbar-brand>
+          <b-navbar-brand>Nimblepod</b-navbar-brand>
           <b-collapse is-nav id="navitems">
             <b-navbar-nav>
               <b-nav-item :to="{name: 'index'}">Home</b-nav-item>

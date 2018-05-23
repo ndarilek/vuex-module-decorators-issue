@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: "%s - Podcatcher"
+    titleTemplate: "%s - Nimblepod"
   },
   modules: [
     "@nuxtjs/axios",

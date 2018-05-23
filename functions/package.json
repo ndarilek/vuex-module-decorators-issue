@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "feedme": "^1.2.0"
+  },
+  "devDependencies": {
+    "serverless": "^1.27.2",
+    "serverless-kubeless": "^0.4.2"
+  }
+}

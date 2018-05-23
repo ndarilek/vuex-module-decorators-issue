@@ -30,8 +30,12 @@ export const getters = {
 export const actions = {
 
   async fetch({commit}, url) {
-    const data = await this.$axios.$get(`/api/feedme?url=${url}`)
-    commit("add", data)
+    try {
+      const data = await this.$axios.$get(`https://nimblepod.thewordnerd.info/api/feed?url=${url}`)
+      commit("add", data)
+    } catch(e) {
+      console.error(`Error updating feed: ${url}`, e)
+    }
   },
 
   fetchAll({dispatch, state}) {
