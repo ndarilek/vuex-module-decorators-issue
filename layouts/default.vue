@@ -50,7 +50,7 @@ import {remoteStorage} from "~/plugins/persistedstate"
 
 export default {
   data: () => ({
-    remoteStorageWidget: null
+    remoteStorageWidget: new Widget(remoteStorage)
   }),
   computed: mapGetters({
     currentEpisode: "player/currentEpisode",
@@ -77,7 +77,6 @@ export default {
     }
   },
   mounted() {
-    this.remoteStorageWidget = new Widget(remoteStorage)
     this.remoteStorageWidget.attach()
   },
   updated() {

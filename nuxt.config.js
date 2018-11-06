@@ -1,14 +1,10 @@
-module.exports = {
-  /*
-  ** Headers of the page
-  */
+export default {
   head: {
     titleTemplate: "%s - Nimblepod"
   },
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/dotenv",
-    "@nuxtjs/pwa",
     "bootstrap-vue/nuxt"
   ],
   plugins: [
