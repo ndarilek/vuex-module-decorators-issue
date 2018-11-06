@@ -9,6 +9,10 @@ export const handler = async (event, context, callback) => {
     parser.write(data.data)
     callback(null, {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify(parser.done())
     })
   } catch(err) {
