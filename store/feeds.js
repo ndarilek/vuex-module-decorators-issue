@@ -31,7 +31,7 @@ export const actions = {
 
   async fetch({commit}, url) {
     try {
-      const data = await this.$axios.$get(`https://nimblepod.thewordnerd.info/api/feed?url=${url}`)
+      const data = await this.$axios.$get(`https://nimblepod.thewordnerd.info/.netlify/functions/feed?url=${url}`)
       commit("add", data)
     } catch(e) {
       console.error(`Error updating feed: ${url}`, e)
