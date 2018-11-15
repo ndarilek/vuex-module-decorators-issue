@@ -7,14 +7,14 @@ export const getters = {
 
   currentEpisode(state, getters) {
     if(state.currentEpisodeId && getters.currentFeed)
-      return getters.currentFeed.items.find(v => v.link = state.currentEpisodeId)
+      return getters.currentFeed.items.find(v => v.link == state.currentEpisodeId)
     else
       return null
   },
 
   currentFeed(state, getters, rootState) {
     if(state.currentFeedId)
-      return rootState.feeds[state.currentFeedId]
+      return rootState.feeds.feeds[state.currentFeedId]
     else
       return null
   }

@@ -17,29 +17,33 @@
 
 <script>
 import moment from "moment"
+import Vue from "vue"
+import Component from "vue-class-component"
 
-export default {
+@Component({
   props: {
     feed: {
       type: Object
     }
-  },
-  computed: {
-    fields() {
-      const fields = [
-        "title",
-        "description",
-        {
-          key: "pubdate",
-          label: "Date",
-          formatter: (value) => moment(value).calendar()
-        }
-      ]
-      if(!this.feed)
-        fields.push("feed")
-      return fields
-    }
   }
+})
+export default class extends Vue {
+
+  get fields() {
+    const fields = [
+      "title",
+      "description",
+      {
+        key: "pubdate",
+        label: "Date",
+        formatter: (value) => moment(value).calendar()
+      }
+    ]
+    if(!this.feed)
+      fields.push("feed")
+    return fields
+  }
+
 }
 
 </script>

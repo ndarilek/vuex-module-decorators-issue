@@ -1,6 +1,8 @@
 import Vue from "vue"
 
-export const state = () => ({})
+export const state = () => ({
+  feeds: {}
+})
 
 export const mutations = {
 
@@ -10,11 +12,11 @@ export const mutations = {
       link = link.find((v) => v.rel == "self")
     const id = link.href || link
     feed.id = id
-    Vue.set(state, id, feed)
+    Vue.set(state.feeds, id, feed)
   },
 
   remove(state, id) {
-    Vue.delete(state, id)
+    Vue.delete(state.feeds, id)
   }
 
 }
@@ -22,7 +24,7 @@ export const mutations = {
 export const getters = {
 
   feeds(state) {
-    return Object.values(state)
+    return Object.values(state.feeds)
   }
 
 }
@@ -39,7 +41,7 @@ export const actions = {
   },
 
   fetchAll({dispatch, state}) {
-    Object.keys(state).forEach((feed) => dispatch("fetch", feed))
+    Object.keys(state.feeds).forEach((feed) => dispatch("fetch", feed))
   },
 
   importOpml({dispatch}, opml) {

@@ -29,42 +29,47 @@
 
 <script>
 import moment from "moment"
-import {mapActions, mapGetters} from "vuex"
+import Vue from "vue"
+import {namespace} from "vuex-class"
+import Component from "vue-class-component"
 
-export default {
-  data: () => ({
-    fields: [
-      {
-        key: "title",
-        sortable: true
-      },
-      "description",
-      "episodes",
-      {
-        key: "lastbuilddate",
-        label: "Last Updated",
-        formatter: (value) => moment(value).calendar(),
-        sortable: true
-      }
-    ],
-    url: ""
-  }),
-  computed: mapGetters({
-    feeds: "feeds/feeds"
-  }),
-  methods: {
-    ...mapActions({
-      fetch: "feeds/fetch",
-      refresh: "feeds/fetchAll"
-    }),
-    async submit() {
-      await this.fetch(this.url)
-      this.url = ""
-    }
-  },
+const feeds = namespace("feeds")
+
+@Component({
   head: {
     title: "Feeds"
   }
+})
+export default class extends Vue {
+
+  fields = [
+    {
+      key: "title",
+      sortable: true
+    },
+    "description",
+    "episodes",
+    {
+      key: "lastbuilddate",
+      label: "Last Updated",
+      formatter: (value) => moment(value).calendar(),
+      sortable: true
+    }
+  ]
+
+  url = ""
+
+  @feeds.Getter feeds
+
+  @feeds.Action fetch
+
+  @feeds.Action("fetchAll") refresh
+
+  async submit() {
+    await this.fetch(this.url)
+    this.url = ""
+  }
+
 }
 
 </script>

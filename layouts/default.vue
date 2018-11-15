@@ -44,41 +44,50 @@
 
 <script>
 import Widget from 'remotestorage-widget';
-import {mapActions, mapGetters, mapMutations} from "vuex"
+import Vue from "vue"
+import {namespace} from "vuex-class"
+import Component from "vue-class-component"
 
 import {remoteStorage} from "~/plugins/persistedstate"
 
-export default {
-  data: () => ({
-    remoteStorageWidget: new Widget(remoteStorage)
-  }),
-  computed: mapGetters({
-    currentEpisode: "player/currentEpisode",
-    currentFeed: "player/currentFeed",
-    currentStatus: "status/current"
-  }),
-  methods: {
-    ...mapActions({
-      importOpml: "feeds/importOpml"
-    }),
-    ...mapMutations({
-      updateStatus: "status/update"
-    }),
-    opmlImport() {
-      const input = this.$refs.opmlImport
-      if(input)
-        input.click()
-    },
-    opmlImporting(event) {
-      const reader = new FileReader()
-      reader.readAsText(event.target.files[0], "UTF-8")
-      reader.onload = (evt) => this.importOpml(evt.target.result)
-      reader.onerror = (evt) => console.log(evt)
-    }
-  },
+const feeds = namespace("feeds")
+
+const player = namespace("player")
+
+const status = namespace("status")
+
+@Component
+export default class extends Vue {
+
+  remoteStorageWidget = new Widget(remoteStorage)
+
+  @player.Getter currentEpisode
+
+  @player.Getter currentFeed
+
+  @status.Getter("current") currentStatus
+
+  @feeds.Action importOpml
+
+  @status.Mutation("update") updateStatus
+
+  opmlImport() {
+    const input = this.$refs.opmlImport
+    if(input)
+      input.click()
+  }
+
+  opmlImporting(event) {
+    const reader = new FileReader()
+    reader.readAsText(event.target.files[0], "UTF-8")
+    reader.onload = (evt) => this.importOpml(evt.target.result)
+    reader.onerror = (evt) => console.log(evt)
+  }
+
   mounted() {
-    this.remoteStorageWidget.attach()
-  },
+    //this.remoteStorageWidget.attach()
+  }
+
   updated() {
     const player = this.$refs.player
     if(!player)
@@ -89,6 +98,7 @@ export default {
       this.updateStatus(this.currentEpisode.link, {currentTime: player.currentTime})
     })
   }
+
 }
 
 </script>

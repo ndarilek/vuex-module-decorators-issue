@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="feed">
     <h1>{{ feed.title }}</h1>
     <b-button-toolbar>
       <b-button @click="unsubscribe">Unsubscribe</b-button>
@@ -11,34 +11,43 @@
 </template>
 
 <script>
-import {mapActions, mapState} from "vuex"
+import Vue from "vue"
+import {namespace} from "vuex-class"
+import Component from "vue-class-component"
 
 import Episodes from "~/components/episodes"
 
-export default {
-  computed: {
-    id() {
-      return this.$route.params.feed
-    },
-    ...mapState({
-      feed: function({feeds}) { return feeds[this.id] }
-    })
-  },
-  methods: {
-    ...mapActions({
-      remove: "feeds/remove"
-    }),
-    unsubscribe() {
-      if(confirm("Are you sure?")) {
-        this.remove(this.id)
-        this.$router.push({name: "index"})
-      }
-    }
-  },
+const feeds = namespace("feeds")
+
+@Component({
   components: {Episodes},
   head() {
-    return {title: this.feed.title}
+    return {
+      title: this.feed ? this.feed.title : "Loading..."
+    }
   }
+})
+export default class extends Vue {
+
+  @feeds.State feeds
+
+  get id() {
+    return this.$route.params.feed
+  }
+
+  get feed() {
+    return this.feeds[this.id]
+  }
+
+  @feeds.Action remove
+
+  unsubscribe() {
+    if(confirm("Are you sure?")) {
+      this.remove(this.id)
+      this.$router.push({name: "index"})
+    }
+  }
+
 }
 
 </script>
