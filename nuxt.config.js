@@ -5,7 +5,8 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/dotenv",
-    "bootstrap-vue/nuxt"
+    "bootstrap-vue/nuxt",
+    "nuxt-babel"
   ],
   plugins: [
     {
