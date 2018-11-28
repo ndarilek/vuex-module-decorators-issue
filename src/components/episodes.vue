@@ -3,9 +3,9 @@
     <nav role="region" aria-label="episodes">
       <b-table striped :items="feed.items" :fields="fields">
         <template slot="title" slot-scope="data">
-          <nuxt-link :to="{name: 'feed-episode', params: {feed: feed.id, episode: data.item.link}}">
+          <router-link :to="{name: 'feed-episode', params: {feed: feed.id, episode: data.item.link}}">
             {{ data.item.title }}
-          </nuxt-link>
+          </router-link>
         </template>
         <template slot="description" slot-scope="data">
           <span class="d-inline-block text-truncate" style="max-width: 150px;" v-html="data.item.description"/>
@@ -15,19 +15,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import moment from "moment"
-import Vue from "vue"
-import Component from "vue-class-component"
+import {Component, Prop, Vue} from "vue-property-decorator"
 
-@Component({
-  props: {
-    feed: {
-      type: Object
-    }
-  }
-})
+@Component
 export default class extends Vue {
+
+  @Prop(Object) feed!: object
 
   get fields() {
     const fields = [
@@ -36,8 +31,8 @@ export default class extends Vue {
       {
         key: "pubdate",
         label: "Date",
-        formatter: (value) => moment(value).calendar()
-      }
+        formatter: (value: string) => moment(value).calendar(),
+      },
     ]
     if(!this.feed)
       fields.push("feed")

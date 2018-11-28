@@ -1,2 +1,4 @@
 [build]
-functions = "functions/"
+  Command = "yarn build"
+  Functions = "lambda"
+  Publish = "dist"

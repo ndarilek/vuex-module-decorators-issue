@@ -8,10 +8,9 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue"
+<script lang="ts">
+import {Component, Vue} from "vue-property-decorator"
 import {namespace} from "vuex-class"
-import Component from "vue-class-component"
 
 const feeds = namespace("feeds")
 
@@ -20,15 +19,15 @@ const player = namespace("player")
 const status = namespace("status")
 
 @Component({
-  head() {
+  metaInfo() {
     return {
-      title: this.episode ? this.episode.title : "Loading..."
+      title: this.episode ? this.episode.title : "Loading...",
     }
-  }
+  },
 })
 export default class extends Vue {
 
-  @feeds.State feeds
+  @feeds.State feeds: any
 
   get feedId() {
     return this.$route.params.feed
@@ -43,7 +42,7 @@ export default class extends Vue {
   }
 
   get episode() {
-    return this.feed ? this.feed.items.find((v) => v.link == this.id) : {}
+    return this.feed ? this.feed.items.find((v: any) => v.link === this.id) : {}
   }
 
   get description() {
@@ -61,11 +60,11 @@ export default class extends Vue {
       return ""
   }
 
-  @player.Mutation setCurrentEpisodeId
+  @player.Mutation setCurrentEpisodeId: any
 
-  @player.Mutation setCurrentFeedId
+  @player.Mutation setCurrentFeedId: any
 
-  @status.Mutation("remove") removeStatus
+  @status.Mutation("remove") removeStatus: any
 
   clearStatus() {
     this.removeStatus(this.episode.link)

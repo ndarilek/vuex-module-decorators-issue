@@ -20,7 +20,7 @@
     <b-row>
       <b-col>
         <main>
-          <nuxt/>
+          <router-view/>
         </main>
       </b-col>
     </b-row>
@@ -28,9 +28,9 @@
       <b-col>
         <b-card overlay :img-src="currentFeed.image.url" img-alt="Podcast Logo">
           <h2 slot="header">
-            <nuxt-link :to="{name: 'feed-episode', params: {feed: currentFeed.id, episode: currentEpisode.link}}">
+            <router-link :to="{name: 'feed-episode', params: {feed: currentFeed.id, episode: currentEpisode.link}}">
               {{ currentEpisode.title }}
-            </nuxt-link>
+            </router-link>
           </h2>
           <b-card-body>
             <audio controls :src="currentEpisode.enclosure.url" ref="player"/>
@@ -43,12 +43,12 @@
 </template>
 
 <script>
-import Widget from 'remotestorage-widget';
+import Widget from "remotestorage-widget"
 import Vue from "vue"
 import {namespace} from "vuex-class"
 import Component from "vue-class-component"
 
-import {remoteStorage} from "~/plugins/persistedstate"
+import {remoteStorage} from "@/remotestorage"
 
 const feeds = namespace("feeds")
 
@@ -81,20 +81,20 @@ export default class extends Vue {
     const reader = new FileReader()
     reader.readAsText(event.target.files[0], "UTF-8")
     reader.onload = (evt) => this.importOpml(evt.target.result)
-    reader.onerror = (evt) => console.log(evt)
+    // reader.onerror = (evt) => console.error(evt)
   }
 
   mounted() {
-    //this.remoteStorageWidget.attach()
+    // this.remoteStorageWidget.attach()
   }
 
   updated() {
-    const player = this.$refs.player
-    if(!player)
+    const p = this.$refs.player
+    if(!p)
       return
-    player.addEventListener("canplay", () => {
-    })
-    player.addEventListener("timeupdate", () => {
+    /*p.addEventListener("canplay", () => {
+    })*/
+    p.addEventListener("timeupdate", () => {
       this.updateStatus(this.currentEpisode.link, {currentTime: player.currentTime})
     })
   }

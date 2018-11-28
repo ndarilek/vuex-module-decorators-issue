@@ -10,26 +10,27 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue"
+<script lang="ts">
+import {Component, Vue} from "vue-property-decorator"
 import {namespace} from "vuex-class"
-import Component from "vue-class-component"
 
-import Episodes from "~/components/episodes"
+import Episodes from "@/components/episodes.vue"
 
 const feeds = namespace("feeds")
 
 @Component({
-  components: {Episodes},
-  head() {
+  components: {
+    Episodes,
+  },
+  metaInfo() {
     return {
-      title: this.feed ? this.feed.title : "Loading..."
+      title: this.feed ? this.feed.title : "Loading...",
     }
-  }
+  },
 })
 export default class extends Vue {
 
-  @feeds.State feeds
+  @feeds.State feeds: any
 
   get id() {
     return this.$route.params.feed
@@ -39,7 +40,7 @@ export default class extends Vue {
     return this.feeds[this.id]
   }
 
-  @feeds.Action remove
+  @feeds.Action remove: any
 
   unsubscribe() {
     if(confirm("Are you sure?")) {
